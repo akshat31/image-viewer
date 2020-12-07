@@ -20,7 +20,7 @@ const LikeComponent = (props) => {
 
     return (
         <span onClick={handleLike}>
-            {toggler ? <FavoriteIcon className='font-38p' /> : <FavoriteBorderIcon className='font-38p' />}
+            {toggler ? <FavoriteIcon className='text-danger font-38p' /> : <FavoriteBorderIcon className='font-38p' />}
             <span className='ml-2 fs-18p'>{likeCount} Likes</span>
         </span>
     )

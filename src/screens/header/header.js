@@ -35,11 +35,11 @@ const Header = (props) => {
                                 currentPage !== '/profile' && (
                                     <div className="has-search w-75">
                                         <span className="fa fa-search text-dark form-control-feedback"></span>
-                                        <input type="text" className="form-control" placeholder="Search" />
+                                        <input type="text" className="form-control" placeholder="Search..." />
                                     </div>
                                 )
                             }
-                            <Avatar onClick={handleClick} className='mx-4 border border-light' alt="Remy Sharp" src={AvatarImage} />
+                            <Avatar onClick={handleClick} className='cursor-pointer mx-4 border border-light' alt="Remy Sharp" src={AvatarImage} />
                             {toggler && (
                                 <ul className='popup-container'>
                                     { currentPage !== '/profile' && <li onClick={handleRedirect}>My Account</li>}

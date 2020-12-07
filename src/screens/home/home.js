@@ -61,7 +61,7 @@ class Home extends Component {
         const NewsFeedRenderer = () => {
             return newsFeedData.map(
                 (newsFeedImageData, index) => <NewsFeedCard
-                    index={index} 
+                    key={index}
                     {...newsFeedImageData}/>
             )
         };
