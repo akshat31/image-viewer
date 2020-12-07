@@ -9,12 +9,16 @@ import { CardComponent } from './card-component';
 // CSS
 import './login.css';
 
+// variables to be edit by reviewer
 const accessToken = `IGQVJVRXZAjU055aGtjZAE5VSWxJNWlKUzdObnlIMVFMUTQyOHo1clYza0NaSlVHajB0bDdnVlYzcTJhaXhudGVUcFVCdnp4VmwySFk4d0NIdVcxc3Q2aXJHOGZAFMWx6R3lHR3Btc0JCZADgwcVN2RElOX0hqRU1oOWQ4eWdJ`
+const user = 'user';
+const pass = 'admin';
 class Login extends Component {
 
     constructor(props) {
         super(props)
 
+        // Intialised State for login page and pass in card component also
         this.state = {
             error: false,
             helperText: '',
@@ -27,6 +31,9 @@ class Login extends Component {
         }
     };
 
+    /**
+     *  function for onChange of text box get value and save in store
+     */
     handleOnChange = (event) => {
         event.preventDefault();
         this.setState({
@@ -34,11 +41,14 @@ class Login extends Component {
         })
     }
 
+    /**
+     *  function triggers with onClick of login button
+     */
     onClickHandler = () => {
-        const user = 'user';
-        const pass = 'admin';
+        // destructuring state
         const { username, password } = this.state;
-        
+
+        // if conditon for checking required fields of both username and password
         if (username === '' || password === '') {
             if (username === '' && password === '') {
                 this.setState({
@@ -50,18 +60,20 @@ class Login extends Component {
                     usernameReq: true,
                     passwordReq: false
                 })
-            } else if (username !== '' && password === ''){
+            } else if (username !== '' && password === '') {
                 this.setState({
                     usernameReq: false,
                     passwordReq: true
                 })
             }
+            // condition for checking correct username and password
         } else if (username !== user && password !== pass) {
             this.setState({
                 userPassIncorrect: true,
                 usernameReq: false,
                 passwordReq: false,
             })
+            // condition for setting session and authenticate user
         } else {
             this.setState({
                 isAuthenticated: true
@@ -71,18 +83,18 @@ class Login extends Component {
     }
 
     render() {
-        const { isAuthenticated } = this.state;
-
         return (
             <Fragment>
-                <Header {...this.props}/>
+                <Header {...this.props} />
                 <div className='row'>
                     <div className='col-lg-12'>
                         <div className='d-flex justify-content-center align-items-center vh-100'>
                             <div className='login-container w-35'>
-                                {isAuthenticated ? 
-                                    <Redirect to="/home" /> 
-                                    : 
+                                {/* performing ternary operation and checking authentication */}
+                                {/* if valid redirecting to home */}
+                                {this.state.isAuthenticated ?
+                                    <Redirect to="/home" />
+                                    :
                                     <CardComponent
                                         {...this.state}
                                         handleOnChange={this.handleOnChange}
