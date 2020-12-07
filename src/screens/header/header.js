@@ -22,7 +22,9 @@ const Header = (props) => {
         }
     }
 
-    const currentPage = props.history && props.history.location;
+    const currentPage = props.history && props.history.location.pathname;
+
+    console.log('currentPage currentPage', currentPage)
 
     return (
         <div className='header-bg'>
@@ -42,7 +44,11 @@ const Header = (props) => {
                             <Avatar onClick={handleClick} className='cursor-pointer mx-4 border border-light' alt="Remy Sharp" src={AvatarImage} />
                             {toggler && (
                                 <ul className='popup-container'>
-                                    { currentPage !== '/profile' && <li onClick={handleRedirect}>My Account</li>}
+                                    { currentPage !== '/profile' && <li
+                                        className='border-btm'
+                                        onClick={handleRedirect}>
+                                        My Account
+                                    </li>}
                                     <li onClick={handleLogout}>Logout</li>
                                 </ul>
                             )}

@@ -62,6 +62,7 @@ class Home extends Component {
             return newsFeedData.map(
                 (newsFeedImageData, index) => <NewsFeedCard
                     key={index}
+                    index={index}
                     {...newsFeedImageData}/>
             )
         };

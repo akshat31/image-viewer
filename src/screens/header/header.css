@@ -53,8 +53,11 @@
 }
 
 .popup-container li:nth-child(1) {
-    border-bottom: 1px solid black;
     padding: 5px;
+}
+
+.border-btm {
+    border-bottom: 1px solid black;
 }
 
 .popup-container li:nth-child(2) {

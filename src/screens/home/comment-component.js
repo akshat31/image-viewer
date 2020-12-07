@@ -6,9 +6,10 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 
 const CommentComponent = ({
+    commentIndex,
     username,
     comment,
-    commentArray,
+    commentArray = [],
     handleCommentSubmit,
     handleComment
 }) => {
@@ -23,9 +24,9 @@ const CommentComponent = ({
                 ))
             }
             <FormControl className='comment-input'>
-                <InputLabel htmlFor='component-disabled'>Add a comment</InputLabel>
+                <InputLabel htmlFor={`component-disabled-${commentIndex}`}>Add a comment</InputLabel>
                 <Input
-                    id='component-disabled'
+                    id={`component-disabled-${commentIndex}`}
                     value={comment}
                     onChange={handleComment} />
             </FormControl>
