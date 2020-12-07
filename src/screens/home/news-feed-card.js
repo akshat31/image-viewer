@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React from 'react';
 
 // Dependencies
 import Avatar from '@material-ui/core/Avatar';
@@ -14,31 +14,28 @@ import { LikeComponent } from './like-component';
 
 // CSS
 import './home.css';
-import Sample from '../../assets/images/sample.jpeg'
+import Sample from '../../assets/images/sample.jpeg';
 
-
+// Utils
+import { createDateTime } from '../../common/utils/create-date-time';
 
 const NewsFeedCard = ({
+    index,
     media_url = Sample,
     caption,
     username,
     timestamp = '2020-12-01T14:39:27+0000' 
 }) => {
-
-    let imageDate = new Date(timestamp)
-    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let finalDate = `${imageDate.getDate()} ${months[imageDate.getMonth()]} ${imageDate.getFullYear()} ${imageDate.getHours()}:${imageDate.getMinutes() > 10 ? imageDate.getMinutes() : '0'+imageDate.getMinutes()}:${imageDate.getSeconds()}`
-    console.log('finalDate finalDate', finalDate)
-
+    const finalDateTime = createDateTime(timestamp)
 
     return (
-        <Card className='w-40 vh-50 m-4'>
+        <Card key={index} className='w-40 vh-50 m-4'>
             <CardContent>
                 <div className='card-header-logo'>
-                    <Avatar alt="Remy Sharp" src={AvatarImg} />
+                    <Avatar alt="Instagram Avatar" src={AvatarImg} />
                     <div className='card-header-label'>
                         <span>{ username || 'upgrad_sde' }</span>
-                        <span>{ finalDate || '30/11/2020 13:00'}</span>
+                        <span>{ finalDateTime || '30/11/2020 13:00'}</span>
                     </div>
                 </div>
                 <img
