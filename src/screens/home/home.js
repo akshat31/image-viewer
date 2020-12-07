@@ -1,30 +1,19 @@
 import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
 
 // Dependencies
 import axios from 'axios';
-import Card from '@material-ui/core/Card';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import CardContent from '@material-ui/core/CardContent';
-import AvatarImg from '../../assets/images/avatar.jpg';
-import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import moment from 'moment';
 
 // Components
 import { Header } from '../header/header';
-import { LikeComponent } from './like-component';
+import { NewsFeedCard } from './news-feed-card';
 
 // CSS
-import './home.css'
+import './home.css';
+
+// Mock Data
 import { mockData } from './mock-data-1';
 import { mockData2 } from './mock-data-2';
-import { NewsFeedCard } from './news-feed-card';
-import Sample from '../../assets/images/sample.jpeg'
 
 
 const accessToken = sessionStorage.getItem('access-token');
@@ -39,7 +28,6 @@ class Home extends Component {
     }
 
     componentDidMount () {
-
         if (!accessToken) {
             const apiUrl = `https://graph.instagram.com/me/media?fields=id,caption&access_token=${accessToken}`;
 
@@ -72,24 +60,18 @@ class Home extends Component {
 
         const NewsFeedRenderer = () => {
             return newsFeedData.map(
-                (newsFeedImageData) => <NewsFeedCard {...newsFeedImageData}/>
+                (newsFeedImageData, index) => <NewsFeedCard
+                    index={index} 
+                    {...newsFeedImageData}/>
             )
-        }
-
-        const NewsFeedRendererTest = () => {
-            return (
-                <Fragment>
-                    <NewsFeedCard />
-                    <NewsFeedCard />
-                </Fragment>
-            )
-        }
+        };
 
         return (
             <Fragment>
                 <Header {...this.props}/>
                 <div className='newsfeed-container'>
-                    { Array.isArray(newsFeedData) && newsFeedData.length > 0 ? <NewsFeedRenderer /> : (
+                    { Array.isArray(newsFeedData) && newsFeedData.length > 0 ?
+                        <NewsFeedRenderer /> : (
                         <div className='d-flex justify-content-center align-items-center vh-100'>
                             <CircularProgress />
                         </div>
