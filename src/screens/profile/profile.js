@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
     gridList: {
     //   width: 500,
-      height: '100vh',
+      height: '100%',
     },
   }));
 class Profile extends Component {
@@ -37,6 +37,7 @@ class Profile extends Component {
 
         this.state = {
             profileImageData: mockData2,
+            description: 'Upgrad Education'
         }
     }
 
@@ -54,7 +55,7 @@ class Profile extends Component {
                 })
                 const { allImageData } = this.state;
                 if (allImageData && Array.isArray(allImageData) && allImageData.length > 0) {
-                    for (let i = 0; i < 3; i++) {
+                    for (let i = 0; i < 6; i++) {
                         axios.get(`${BASE_URL}/${allImageData[i].id}`, {
                             params: {
                                 fields: 'id,media_type,media_url,username,timestamp,caption',
@@ -79,15 +80,15 @@ class Profile extends Component {
     }
 
     render() {
-        const { profileImageData, allImageData } = this.state;
+        const { profileImageData, allImageData, description } = this.state;
 
         const ProfileImagesRenderer = () => {
             const classes = useStyles();
             return (
                 <div className={classes.root}>
-                    <GridList cellHeight={160} className={classes.gridList} cols={3}>
+                    <GridList cellHeight={160} style={{ overflow: 'hidden' }} className={classes.gridList} cols={3}>
                         {profileImageData.map((profileData, index) => (
-                        <GridListTile style={{ height: '100vh'}} key={index} cols={1}>
+                        <GridListTile style={{ height: '375px'}} key={index} cols={1}>
                             <img src={profileData.media_url} alt='profile' />
                         </GridListTile>
                         ))}
@@ -109,7 +110,7 @@ class Profile extends Component {
                                 <h1>{(allImageData && allImageData.length > 0 && allImageData[0].username) || 'Upgrad_sde'}</h1>
                                 <div className='row'>
                                     <div className='col-lg-4'>
-                                        <p>Posts: 6</p>
+                                        <p>Posts: {profileImageData.length || '0'}</p>
                                     </div>
                                     <div className='col-lg-4'>
                                         <p>Follows: 4</p>
@@ -119,8 +120,10 @@ class Profile extends Component {
                                     </div>
                                 </div>
                                 <div className='mt-4'>
-                                    <h3 className='d-inline pt-4'>Upgrad Education</h3>
-                                    <span className='ml-3 edit-icon-container'><EditRoundedIcon /></span>
+                                <h3 className='d-inline pt-4'>{description}</h3>
+                                    <span className='ml-3 edit-icon-container'>
+                                        <EditRoundedIcon />
+                                    </span>
                                 </div>
                             </div>
                         </div>

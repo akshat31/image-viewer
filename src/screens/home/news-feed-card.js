@@ -26,6 +26,7 @@ import { createDateTime } from '../../common/utils/create-date-time';
 import { CommentComponent } from './comment-component';
 
 const NewsFeedCard = ({
+    index,
     media_url = Sample,
     caption,
     username,
@@ -64,6 +65,7 @@ const NewsFeedCard = ({
                 <LikeComponent />
                 <div className='mt-5'>
                     <CommentComponent
+                        commentIndex={index}
                         username={username}
                         comment={comment}
                         commentArray={commentArray}
