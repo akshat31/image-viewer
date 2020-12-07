@@ -24,9 +24,18 @@ const Header = (props) => {
 
     const currentPage = props.history && props.history.location.pathname;
 
+    const Redirect = () => {
+        props.history.push('/home');
+    }
+
     return (
         <div className='header-bg'>
-            <span className='head-logo'>Image Viewer</span>
+            <span
+                onClick={Redirect}
+                style={{ cursor: 'pointer' }}
+                className='head-logo'>
+                Image Viewer
+            </span>
             {
                 isAuth ? (
                     <Fragment>
