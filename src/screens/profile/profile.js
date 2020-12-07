@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
     gridList: {
     //   width: 500,
-      height: 450,
+      height: '100vh',
     },
   }));
 class Profile extends Component {
@@ -87,7 +87,7 @@ class Profile extends Component {
                 <div className={classes.root}>
                     <GridList cellHeight={160} className={classes.gridList} cols={3}>
                         {profileImageData.map((profileData, index) => (
-                        <GridListTile style={{ height: '375px'}} key={index} cols={1}>
+                        <GridListTile style={{ height: '100vh'}} key={index} cols={1}>
                             <img src={profileData.media_url} alt='profile' />
                         </GridListTile>
                         ))}
