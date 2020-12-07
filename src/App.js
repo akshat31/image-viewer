@@ -1,22 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Header } from "./screens/header/header";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Home } from "./screens/home/home";
-import { Login } from "./screens/login/login";
 import { Profile } from "./screens/profile/profile";
+import { Login } from "./screens/login/login";
+import { requireAuth } from './require-auth';
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <div className='container'>
+    <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/home" render={(props) => requireAuth(<Home {...props}/>)} />
+          <Route exact path="/profile" render={(props) => requireAuth(<Profile {...props}/>)} />
         </Switch>
-      </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

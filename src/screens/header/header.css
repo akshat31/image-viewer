@@ -1,0 +1,66 @@
+.header-bg {
+    background-color: #263238;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.head-logo {
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+/* Bootstrap 4 text input with search icon */
+.has-search {
+    border: 1px solid #a8abd0;
+    border-radius: 6px;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.form-control {
+    background-color: #a8adb0;
+}
+
+.popup-container {
+    position: absolute;
+    background-color: #dfdfdf;
+    color: black;
+    padding: 15px;
+    border-radius: 12px;
+    right: 45px;
+    top: 65px;
+}
+
+.popup-container li {
+    cursor: pointer;
+}
+
+.popup-container li:nth-child(1) {
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+
+.popup-container li:nth-child(2) {
+    padding: 5px 9px;
+}
+
+.w-30 {
+    width: 30%;
+}
