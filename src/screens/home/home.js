@@ -11,53 +11,64 @@ import { NewsFeedCard } from './news-feed-card';
 // CSS
 import './home.css';
 
-// Mock Data
-import { mockData } from './mock-data-1';
-import { mockData2 } from './mock-data-2';
-
-
+// Constants
 const accessToken = sessionStorage.getItem('access-token');
+const BASE_URL = 'https://graph.instagram.com';
 class Home extends Component {
 
     constructor (props) {
         super(props)
 
         this.state = {
-            newsFeedData: mockData2,
+            newsFeedData: [],
         };
     }
 
-    componentDidMount () {
-        if (!accessToken) {
-            const apiUrl = `https://graph.instagram.com/me/media?fields=id,caption&access_token=${accessToken}`;
-
-            axios.get('https://akshatsoni.com/').then((data) => {
-                const allImageData = mockData.data;
+    componentDidMount() {
+        if (accessToken) {
+            axios.get(`${BASE_URL}/me/media`, {
+                params: {
+                    fields: 'id,username',
+                    access_token: accessToken
+                }
+            }).then((data) => {
+                this.setState({
+                    allImageData: data.data.data
+                })
+                const { allImageData } = this.state;
                 if (allImageData && Array.isArray(allImageData) && allImageData.length > 0) {
-                    for (let i = 0; i < 2; i++) {
-                        axios.get(`https://graph.instagram.com/${allImageData[i].id}?fields=id,media_type,media_url,username,timestamp,caption&access_token=${accessToken}`)
-                        .then((imageAttributes) => {
+                    for (let i = 0; i < allImageData.length; i++) {
+                        axios.get(`${BASE_URL}/${allImageData[i].id}`, {
+                            params: {
+                                fields: 'id,media_type,media_url,username,timestamp,caption',
+                                access_token: accessToken
+                            }
+                        }).then((imageAttributes) => {
                             imageAttributes.data && this.setState((state) => {
                                 const newsFeedData = state.newsFeedData.concat(imageAttributes.data)
-                                    return {
-                                        newsFeedData
-                                    }
-                                })
+                                return {
+                                    newsFeedData
+                                }
+                            })
                         }).catch(() => {
-                            // TODO - put alert here
+                            alert('Network API call failed');
                         })
                     }
                 }
             }).catch(() => {
-                 // TODO - put alert here
+                alert('Network API call failed');
             });
         }
     }
 
     render () {
 
+        // Destructuring State
         const { newsFeedData } = this.state;
 
+        /**
+         *  Renderer function for images which process array and gives image card data
+         */
         const NewsFeedRenderer = () => {
             return newsFeedData.map(
                 (newsFeedImageData, index) => <NewsFeedCard

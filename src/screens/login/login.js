@@ -10,7 +10,7 @@ import { CardComponent } from './card-component';
 import './login.css';
 
 // variables to be edit by reviewer
-const accessToken = `IGQVJVRXZAjU055aGtjZAE5VSWxJNWlKUzdObnlIMVFMUTQyOHo1clYza0NaSlVHajB0bDdnVlYzcTJhaXhudGVUcFVCdnp4VmwySFk4d0NIdVcxc3Q2aXJHOGZAFMWx6R3lHR3Btc0JCZADgwcVN2RElOX0hqRU1oOWQ4eWdJ`
+const accessToken = `IGQVJXXzBsYXNxMlBYb3JSSzNBcHZAGTk5tWUJGTkliVGJNN2hJZAUZARYUI1OEp4eHBOZAzZArSkMyaE1CbTRReDdvbklDdFl5NlJwTXlQM21YRWdBZAGdVR0FhRnlxb0Vka1dXNmhxQ1lrdVNtVVlzMFVTRXZAQSjRPOEpLdWFZA`
 const user = 'user';
 const pass = 'admin';
 class Login extends Component {

@@ -24,8 +24,6 @@ const Header = (props) => {
 
     const currentPage = props.history && props.history.location.pathname;
 
-    console.log('currentPage currentPage', currentPage)
-
     return (
         <div className='header-bg'>
             <span className='head-logo'>Image Viewer</span>
